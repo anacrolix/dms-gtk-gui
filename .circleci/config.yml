@@ -36,7 +36,7 @@ jobs:
       - run: go version
       - checkout
       - run: sudo apt-get update
-      # - run: sudo apt install fuse pv
+      - run: sudo apt install libgtk2.0-dev libglib2.0-dev libgtksourceview2.0-dev
       - restore_cache:
           keys:
             - go-pkg-
@@ -52,7 +52,6 @@ jobs:
           key: go-pkg-{{ checksum "go.mod" }}
           paths:
             - ~/go/pkg
-      - run: cd dms-gtk-gui && go build
       - save_cache:
           key: go-cache-{{ .Revision }}
           paths:
